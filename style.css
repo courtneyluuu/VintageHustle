@@ -1,0 +1,377 @@
+html {
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  margin: 0 auto;
+  background: #f5f8f1ff;
+  font-family: 'Avenir';
+  font-weight: 300;
+}
+
+.container {
+  width: 20%;
+  margin: 0 auto;
+}
+
+header {
+  background: #c2c5bcff;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  z-index: 999;
+  position: sticky;
+  top: 0;
+  left: 0;
+}
+
+header::after {
+  content: '';
+  display: table;
+  clear: both;
+}
+
+/*Navigation*/
+.nav {
+  display: block !important;
+}
+
+nav ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+nav li {
+  display: inline-block;
+  margin-left: 15px;
+  margin-right: 48px;
+  padding-top: 25px;
+  padding: 10px 0px;
+  position: relative;
+}
+
+nav a {
+  color: #ffffff;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 14px;
+}
+
+nav a:hover {
+  color: #000000;
+  text-decoration: none;
+}
+
+nav a::before {
+  content: '';
+  display: block;
+  height: 5px;
+  width: 100%;
+  background-color: #c2c5bcff;
+}
+
+nav span {
+  position: absolute;
+  left: 30px;
+  top: 120px;
+  color: white;
+}
+
+.CS {
+  float: left;
+  padding: 6px;
+  margin-left: 90px;
+  margin-top: 40px;
+}
+
+.CS a {
+  text-decoration: none;
+  font-size: 14px;
+  line-height: 2px;
+  font-family: 'Avenir';
+  color: white;
+}
+
+.CS a:hover {
+  color: #000000;
+}
+
+.nav input[type=text] {
+  padding: 6px;
+  border: none;
+  margin-top: 8px;
+  margin-left: 30px;
+  font-size: 14px;
+  font-family: 'Avenir';
+}
+
+.nav .search button {
+  float: right;
+  padding: 6px;
+  margin-top: 8px;
+  margin-right: 30px;
+  background-color: #f5f8f1ff;
+  color: black;
+  font-size: 14px;
+  font-family: 'Avenir';
+  border: none;
+  cursor: pointer;
+}
+
+.nav .search button:hover {
+  background: #eeeeeeff;
+}
+
+.About {
+  float: left;
+  padding: 6px;
+  margin-left: 70px;
+  margin-top: 40px;
+}
+
+.About a {
+  text-decoration: none;
+  font-size: 14px;
+  line-height: 2px;
+  font-family: 'Avenir';
+  color: white;
+}
+
+.About a:hover {
+  color: #000000;
+}
+
+.title {
+  margin-top: 15px;
+}
+
+.title a {
+  font-size: 12px;
+  color: black;
+  font-family: 'Avenir';
+  text-decoration: none;
+}
+
+.row {
+  display: block !important;
+}
+
+.column {
+  float: right;
+  margin-top: 42px;
+  margin-right: 70px;
+}
+
+.column a {
+  text-decoration: none;
+  font-size: 14px;
+  line-height: 2px;
+  font-family: 'Avenir';
+  color: white;
+  text-align: center;
+}
+
+.column img {
+  filter: invert(100%);
+  display: inline-block;
+  margin-right: 10px;
+  padding-bottom: 5px;
+  width: 30px;
+  height: 35px;
+  vertical-align: middle;
+  cursor: pointer;
+}
+
+.column a:hover {
+  color: #000000;
+}
+
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+  position: absolute;
+  top: 0px;
+}
+
+/* Side navigation menu */
+.sidenav {
+  height: 100%;
+  /* 100% Full-height */
+  width: 0;
+  /* 0 width - change this with JavaScript */
+  position: fixed;
+  /* Stay in place */
+  z-index: 1;
+  /* Stay on top */
+  top: 0;
+  /* Stay at the top */
+  left: 0;
+  background-color: white;
+  /* Black*/
+  overflow-x: hidden;
+  /* Disable horizontal scroll */
+  padding-top: 60px;
+  /* Place content 60px from the top */
+  transition: 0.5s;
+  /* 0.5 second transition effect to slide in the sidenav */
+}
+
+/* The navigation menu links */
+.sidenav a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 14px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+/* When you mouse over the navigation links, change their color */
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+.sidehead a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 18px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+/* Position and style the close button (top right corner) */
+.sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+/* Style page content - use this if you want to push the page content to the right when you open the side navigation */
+#main {
+  transition: margin-left .5s;
+  padding: 20px;
+}
+
+/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+@media screen and (max-height: 450px) {
+  .sidenav {
+    padding-top: 15px;
+  }
+
+  .sidenav a {
+    font-size: 18px;
+  }
+}
+
+/* Footer */
+.contain {
+  max-width: 100%;
+  margin: auto;
+  margin-left: 100px;
+}
+
+.foot-row {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+ul {
+  list-style: none;
+}
+
+.footer {
+  float: right;
+  width: 100%;
+  margin-top: 200px;
+  background-color: #24262b;
+  padding: 70px 0;
+}
+
+.footer-col {
+  width: 22%;
+  padding: 0 15px;
+}
+
+.footer-col h4 {
+  font-size: 18px;
+  color: #ffffff;
+  text-transform: capitalize;
+  margin-bottom: 35px;
+  font-weight: 500;
+  position: relative;
+}
+
+.footer-col h4::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -10px;
+  background-color: #c2c5bcff;
+  height: 2px;
+  box-sizing: border-box;
+  width: 50px;
+}
+
+.footer-col ul li:not(:last-child) {
+  margin-bottom: 10px;
+}
+
+.footer-col ul li a {
+  font-size: 16px;
+  text-transform: capitalize;
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: 300;
+  display: block;
+  transition: all 0.3s ease;
+}
+
+.footer-col ul li a:hover {
+  color: #ffffff;
+  padding-left: 8px;
+}
+
+.footer-col .social-links a {
+  display: inline-block;
+  height: 40px;
+  width: 40px;
+  background-color: rgba(255, 255, 255, 0.2);
+  margin: 0 10px 10px 0;
+  text-align: center;
+  line-height: 40px;
+  border-radius: 50%;
+  color: #ffffff;
+  transition: all 0.5s ease;
+}
+
+.footer-col .social-links img {
+  filter: invert(100%);
+  vertical-align: middle;
+}
+
+.footer-col .social-links a:hover {
+  color: #24262b;
+  background-color: #ffffff;
+}
+
+.footer-col .social-links img:hover {
+  filter: invert(0%);
+}
+
+/*responsive*/
+@media(max-width: 767px) {
+  .footer-col {
+    width: 50%;
+    margin-bottom: 30px;
+  }
+}
+
+@media(max-width: 574px) {
+  .footer-col {
+    width: 100%;
+  }
+}

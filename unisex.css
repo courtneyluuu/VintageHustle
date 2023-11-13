@@ -1,0 +1,9 @@
+.price {
+  text-decoration: line-through;
+}
+
+.original-price {}
+
+.discount-price {
+  color: red;
+}

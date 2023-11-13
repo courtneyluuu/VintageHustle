@@ -1,0 +1,282 @@
+.cart-container {
+  display: flex;
+  width: 100%;
+  padding: 24px;
+}
+
+.cart-left {
+  width: 70%;
+}
+
+.cart-right {
+  width: 30%;
+}
+
+.cart-title {
+  display: flex;
+  align-items: center;
+}
+
+.cart-title img {
+  width: 30px;
+  height: 30px;
+}
+
+.cart-title p {
+  margin: 0;
+  margin-top: 8px;
+}
+
+.cart-container {
+  display: flex;
+  gap: 24px;
+  padding-top: 48px;
+  /* width: 100vw; */
+  /* vw: view width */
+  /* vh: view height */
+}
+
+.cart-container p,
+span {
+  margin: 0;
+  font-family: "Avenir";
+}
+
+.cart-left {
+  width: 70%;
+}
+
+.cart-right {
+  width: 30%;
+}
+
+.cart-title {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-bottom: 24px;
+}
+
+.cart-title img {
+  width: 90px;
+  height: 85px;
+}
+
+.cart-title p {
+  margin: 16px 0 0;
+  font-size: 32px;
+}
+
+.cart-items-container {
+  background-color: #ffffff;
+  box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 24px 48px 24px 24px;
+  margin-bottom: 24px;
+  position: relative;
+}
+
+.cart-item-left {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.cart-item-image {
+  width: 100px;
+  height: 125px;
+  object-fit: cover;
+  object-position: center;
+}
+
+.cart-item-info {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.cart-item-info-top {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.cart-item-info-top>p {
+  font-size: 24px;
+}
+
+.cart-item-info-top>span {
+  font-size: 16px;
+}
+
+.cart-item-info-top>span>span {
+  color: red;
+}
+
+.cart-item-info-bottom {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 24px;
+}
+
+.cart-item-info-bottom>p {
+  font-size: 20px;
+}
+
+.cart-item-right {
+  width: 175px;
+  display: flex;
+  flex-direction: column;
+}
+
+.cart-item-right p {
+  font-size: 24px;
+}
+
+.price {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0 8px;
+}
+
+.price>p:first-child {
+  text-decoration: line-through;
+}
+
+.price>p:last-child {
+  color: red;
+}
+
+.cart-item-close-button {
+  cursor: pointer;
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  transform: scale(1.25);
+}
+
+.cart-info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+  padding: 0 24px;
+  font-size: 24px;
+}
+
+.cart-buttons-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.cart-buttons-container>span {
+  font-size: 20px;
+}
+
+.cart-proceed-button {
+  font-size: 20px;
+  cursor: pointer;
+  padding: 6px 12px;
+  background-color: #f4cdcc;
+  border: 2px solid #000000;
+  width: 250px;
+}
+
+.cart-continue-button {
+  font-size: 20px;
+  cursor: pointer;
+  padding: 6px 12px;
+  background-color: transparent;
+  border: 2px solid #000000;
+  width: 250px;
+}
+
+.cart-right {
+  position: sticky;
+  top: 200px;
+  height: fit-content;
+  background-color: #ffffff;
+  box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.cart-right>hr {
+  width: 100%;
+  border: 0.5px solid #000000;
+}
+
+.cart-right-first-block {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 0 8px;
+}
+
+.cart-right-first-block {
+  font-size: 18px;
+}
+
+.cart-right-first-block>div {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.cart-right-first-block>div>input {
+  width: 100%;
+  padding: 4px 8px;
+  border: 2px solid #000000;
+}
+
+.cart-right-first-block>div>input:active,
+.cart-right-first-block>div>input:focus {
+  outline: none;
+  border-radius: 0;
+  border: 2px solid #000000;
+}
+
+.cart-right-first-block>div>button {
+  cursor: pointer;
+  font-size: 16px;
+  padding: 0 16px;
+  background-color: transparent;
+  border: 2px solid #000000;
+}
+
+.cart-right-first-block>div>button:active,
+.cart-right-first-block>div>button:focus {
+  outline: none;
+  border-radius: 0;
+  border: 2px solid #000000;
+}
+
+.cart-right-second-block {
+  padding: 12px 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.cart-right-second-block>div {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.cart-right-third-block {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 20px;
+}
