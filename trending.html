@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>Vintage Hustle</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css" type="text/css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
+    <script src="trending.js" type="module"></script>
+</head>
+<body>
+  <header>
+    <div style="text-align: center" class="CS">
+      <a href="customerservice.html">
+        <p>Customer</p>
+        <p>Service</p>
+      </a>
+    </div>
+    <div style="text-align: center" class="About">
+      <a href="about.html">
+        <p>About Us</p>
+      </a>
+    </div>
+    <div class="row">
+      <div class="column shopping-cart" style="background-color: transparent">
+        <a href="cart.html"><img src="icons/shopping cart.png" width="30" height="30" />Shopping Cart</a>
+        <div id="cart-quantity">0</div>
+      </div>
+      <div class="column favorite" style="background-color: transparent">
+        <a href="favorite.html"><img src="icons/favorite.png" width="30" height="30" />Favorites</a>
+        <div id="favorite-quantity">0</div>
+      </div>
+      <div class="column" style="background-color: transparent">
+        <a href="login.html"><img src="icons/login.png" width="30" height="30" />Login</a>
+      </div>
+    </div>
+    <div style="text-align: center" class="container">
+      <a href="index.html"><img src="images/VH Logo.png" width="200" height="100" class="logo" /></a>
+    </div>
+    <div style="text-align: right" class="nav">
+      <nav>
+        <ul>
+          <span class="material-symbols-outlined" onclick="openNav()">density_medium</span>
+          <li><a href="trending.html">Trending</a></li>
+          <li><a href="shop.html">Shop</a></li>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="donate.html">Donate</a></li>
+          <li><a href="#" style="color: red" ;>Deals</a></li>
+          <li>
+            <div class="search">
+              <form id="search-form">
+                <input id="search-key" type="text" placeholder="Search" name="search" />
+                <button type="submit">Submit</button>
+              </form>
+            </div>
+          </li>
+        </ul>
+      </nav>
+    </div>
+    <div id="mySidenav" class="sidenav">
+      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+      <p style="text-indent: 20px" class="sidehead">Shop by Product</p>
+      <a href="all-products.html">View All</a>
+      <a href="clothes.html">Clothes</a>
+      <a href="s-a.html">Shoes & Accessories</a>
+      <p></p>
+      <p style="text-indent: 20px" class="sidehead">Shop by Category</p>
+      <a href="women.html">Womens</a>
+      <a href="men.html">Mens</a>
+      <a href="kids.html">Kids</a>
+      <a href="unisex.html">Unisex</a>
+    </div>
+
+    <script>
+      /* Set the width of the side navigation to 250px */
+      function openNav() {
+        document.getElementById("mySidenav").style.width = "250px";
+      }
+
+      /* Set the width of the side navigation to 0 */
+      function closeNav() {
+        document.getElementById("mySidenav").style.width = "0";
+      }
+    </script>
+  </header>
+  <style>
+    .select {
+      padding: 40px;
+      width: auto;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .select>a {
+      transition: all 0.25s;
+    }
+
+    .select>a:hover {
+      transform: scale(1.05);
+      transition: all 0.25s;
+    }
+
+    .order-box {
+      color: black;
+      text-align: right;
+      display: inline-block;
+      margin-left: 25px;
+      margin-right: 25px;
+      padding: 12px;
+      font-size: 14px;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    .order-box img {
+      border-radius: 0%;
+      border: 3px solid #eeeeeeff;
+      box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+      width: 200px;
+      height: 200px;
+      object-fit: cover;
+      object-position: center;
+    }
+
+    .order-box h4 {
+      text-align: center;
+      font-size: 14px;
+      margin-top: 10px;
+      padding: 6px;
+      font-family: Avenir Medium;
+    }
+
+    .order-box p {
+      line-height: 6px;
+      text-align: right;
+    }
+
+    .order-box a {
+      text-decoration: none;
+      color: black;
+    }
+
+    .add-cart {
+      position: absolute;
+      background-color: black;
+      cursor: pointer;
+      transition: all 0.3s ease-in-out;
+      top: 175px;
+      left: 0;
+      opacity: 0;
+      width: 100%;
+      padding: 1px;
+    }
+
+    .add-cart p {
+      text-align: center;
+      margin-top: 15px;
+    }
+
+    .add-cart:hover {
+      background-color: #eeeeeeff;
+    }
+
+    .order-box:hover .add-cart {
+      opacity: 100%;
+      color: white;
+    }
+
+    .order-content {
+      position: absolute;
+      justify-content: center;
+      background: white;
+      width: 80%;
+      padding: 1em 2em;
+      border-radius: 0px;
+      box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    }
+
+    .price {
+      text-decoration: line-through;
+    }
+
+    .discount-price {
+      color: red;
+    }
+
+    .sect {
+        padding: 40px 100px;
+        width: auto;
+        text-align: center;
+    }
+  
+    .fe-box {
+      text-align: center;
+      display: inline-block;
+      margin-left: 25px;
+      margin-right: 25px;
+    }
+  
+    .fe-box img {
+      border-radius: 45%;
+      box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    }
+  
+    .fe-box a {
+      text-decoration: none;
+      color: black; 
+    }
+  
+    .fe-box a:hover {
+      color: #ffd966;
+    }
+  
+    .fe-box h5 {
+      font-family: Avenir;
+      font-size: 14px;
+      margin-top: 20px;
+    }
+
+    h3 {
+      font-family: "Avenir Medium";
+      text-align: center;
+      margin-left: 40px;
+    }
+
+  </style>
+    <!-- Trending  -->
+    <div class="title">
+        <p style="text-align: center"><a href="index.html">Vintage Hustle</a> | <a href="shop.html">Shop</a> | <a href="trending.html">Trending</a></p></p>
+    </div>
+
+  <!-- Featured  -->
+  <h3>Shop by Category</h3>
+  <section class="sect">
+    <div class="fe-box">
+      <a href="women.html"><img src="images/shop/women.png" width="160px" />
+        <h5>Women's</h5>
+      </a>
+    </div>
+
+    <div class="fe-box">
+      <a href="men.html"><img src="images/shop/men.png" width="160px" />
+        <h5>Men's</h5>
+      </a>
+    </div>
+
+    <div class="fe-box">
+      <a href="kids.html"><img src="images/shop/kids.jpg" width="160px" />
+        <h5>Kid's</h5>
+      </a>
+    </div>
+
+    <div class="fe-box">
+      <a href="unisex.html"><img src="images/shop/unisex.jpg" width="160px" />
+        <h5>Unisex</h5>
+      </a>
+    </div>
+
+    <div class="fe-box">
+      <a href="s-a.html"><img src="images/shop/accessories.png" width="160px" />
+        <h5>Shoes & Accessories</h5>
+      </a>
+    </div>
+  </section>
+
+    <!-- Clothes  -->
+    <h3>Trending</h3>
+    <section id="trending-product-list" class="select"></section>
+
+    <!--Footer-->
+  <footer class="footer">
+    <div class="contain">
+      <div class="foot-row">
+        <div class="footer-col">
+          <h4>company</h4>
+          <ul>
+            <li><a href="about.html">about us</a></li>
+            <li><a href="customerservice.html">our services</a></li>
+            <li><a href="FAQ.html">privacy policy</a></li>
+            <li><a href="shop.html">our products</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>get help</h4>
+          <ul>
+            <li><a href="FAQ.html">FAQ</a></li>
+            <li><a href="FAQ.html">shipping</a></li>
+            <li><a href="FAQ.html">returns</a></li>
+            <li><a href="FAQ.html">order status</a></li>
+            <li><a href="FAQ.html">payment options</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>online shop</h4>
+          <ul>
+            <li><a href="women.html">womens</a></li>
+            <li><a href="men.html">men</a></li>
+            <li><a href="kids.html">kids</a></li>
+            <li><a href="unisex.html">unisex</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>follow us</h4>
+          <div class="social-links">
+            <a href="#"><img src="icons/facebook.png" width="20px" height="20px" /><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><img src="icons/twt.png" width="20px" height="20px" /><i class="fab fa-twitter"></i></a>
+            <a href="#"><img src="icons/instagram.png" width="20px" height="20px" /><i class="fab fa-instagram"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

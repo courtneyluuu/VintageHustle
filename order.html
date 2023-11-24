@@ -5,7 +5,6 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width" />
   <title>Vintage Hustle</title>
-  <script src="favorite.js"></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
   <link href="style.css" rel="stylesheet" type="text/css" />
@@ -21,7 +20,9 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
     integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
     crossorigin="anonymous"></script>
-  <script src="./order.js"></script>
+  <script src="./order.js" type="module"></script>
+  <!--<script src="./favorite.js" type="module"></script> /!-->
+
 </head>
 
 <body>
@@ -43,8 +44,9 @@
         <a href="cart.html"><img src="icons/shopping cart.png" width="30" height="30" />Shopping Cart</a>
         <div id="cart-quantity">0</div>
       </div>
-      <div class="column" style="background-color: transparent">
+      <div class="column favorite" style="background-color: transparent">
         <a href="favorite.html"><img src="icons/favorite.png" width="30" height="30" />Favorites</a>
+        <div id="favorite-quantity">0</div>
       </div>
       <div class="column" style="background-color: transparent">
         <a href="login.html"><img src="icons/login.png" width="30" height="30" />Login</a>
@@ -64,8 +66,8 @@
           <li><a href="deals.html" style="color: red" ;>Deals</a></li>
           <li>
             <div class="search">
-              <form action="">
-                <input type="text" placeholder="Search" name="search" />
+              <form id="search-form">
+                <input id="search-key" type="text" placeholder="Search" name="search" />
                 <button type="submit">Submit</button>
               </form>
             </div>
@@ -109,7 +111,7 @@
     </div>
 
     <div class="order-right-container">
-      <button class="back-btn" onclick="history.back()">✕</button>
+      <button class="back-btn" onclick="self.location=document.referrer">✕</button>
       <div>
         <p id="order-product-title" class="order-product-title"></p>
         <span id="order-size" class="order-size"></span>
@@ -126,11 +128,8 @@
           <img src="icons/favorite.png" width="25px" alt="Favorites" />
           <p>Add to Favorites</p>
         </div>
-        <div id="notification" class="notification">Item added to favorites!</div>
-
-
-
       </div>
+
 
       <div class="accordion" id="accordionExample">
         <div class="card">
@@ -151,6 +150,8 @@
   </div>
 
   <div id="snackbar">Added to bag ♡</div>
+  <div id="snackbar2">Added to favorites ♡</div>
+
 </body>
 
 </html>

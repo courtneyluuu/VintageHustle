@@ -16,7 +16,7 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
     integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
     crossorigin="anonymous"></script>
-  <script src="./checkout_2.js"></script>
+  <script src="./checkout_2.js" type="module"></script>
   <link rel="stylesheet" href="./checkout_2.css" />
 </head>
 
@@ -42,37 +42,65 @@
         <div class="checkout-information">
           <div>
             <p>Shipping Address:</p>
-            <span>Wendy Darling</span>
-            <span>1 Washington Sq.</span>
-            <span>San Jose, CA 95129</span>
+            <span id="full-name"></span>
+            <span id="address-1"></span>
+            <span id="address-2"></span>
           </div>
           <div>
             <p>Payment Method:</p>
-            <span>Visa ending in 2002</span>
+            <span id="visa"></span>
           </div>
         </div>
 
-        <div class="checkout-cart">
-          <p>Delivery: Dec. 9, 2022</p>
-          <div class="checkout-product">
-            <img src="./images/dress.png" alt="Dress" />
-            <div class="checkout-product-info">
-              <p>Zara Casual Summer Dress</p>
-              <div>
-                <span>Price: $9.99</span>
-                <span>Size: M</span>
-                <span>Quantity: 1</span>
-              </div>
-            </div>
-          </div>
-        </div>
+        <div id="checkout-cart-container"></div>
 
-        <div class="checkout-total"></div>
+        <div class="checkout-total">
+          <button id="place-order-1" type="placeorder">Place Your Order</button>
+          <span id="order-total-bottom"></span>
+        </div>
       </div>
 
-      <div class="form-2">B</div>
+      <div class="form-2">
+        <div class="place-an-order">
+          <button id="place-order-2" type="placeorder">Place Your Order</button>
+        </div>
+
+        <hr />
+
+        <p class="order-summary">
+          Order Summary:
+        </p>
+
+        <div class="checkout-second-block">
+          <div>
+            <p>Base:</p>
+            <p id="base"></p>
+          </div>
+
+          <div>
+            <p>Tax (9%):</p>
+            <p id="tax">$0.00</p>
+          </div>
+
+          <div>
+            <p>Shipping cost:</p>
+            <p id="shipping">$9.99</p>
+          </div>
+
+          <div>
+            <p>Discount:</p>
+            <p id="discount">-$0.95</p>
+          </div>
+
+          <hr style="width: 100%;" />
+
+          <div class="checkout-third-block">
+            <p id="total">Order Total: $10.94</p>
+          </div>
+        </div>
+      </div>
+
     </div>
-  </div>
 </body>
 
 </html>

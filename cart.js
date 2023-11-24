@@ -44,10 +44,11 @@ window.onload = () => {
   tax.innerHTML = `$${finalTax}`;
 
   let finalTotal = 0;
+  const finalDiscount = 0;
   if (cartDiscount) {
     inputCode.value = cartDiscount; // bind sale10 to input
 
-    const finalDiscount = ((+finalBase * 0.1 * 100) / 100).toFixed(2);
+    finalDiscount = ((+finalBase * 0.1 * 100) / 100).toFixed(2);
     discount.innerHTML = `-$${finalDiscount}`;
 
     finalTotal = (((+finalBase + +finalTax + shipping - +finalDiscount) * 100) / 100).toFixed(2);
@@ -89,13 +90,14 @@ window.onload = () => {
           <div class="cart-item-right">
             <p>Total</p>
             <div>
-              ${product.is_deal
-          ? `<div class="price">
+              ${
+                product.is_deal
+                  ? `<div class="price">
                       <p>$${product.original_price}</p>
                       <p>$${product.sale_price}</p>
                     </div>`
-          : `<p>$${product.original_price}</p>`
-        }
+                  : `<p>$${product.original_price}</p>`
+              }
             </div>
           </div>
           <div class="cart-item-close-button" data-product-id="${product.id}">
@@ -153,6 +155,20 @@ window.onload = () => {
     })
     .join("");
 
+  const cartProceedButton = document.getElementById("cart-proceed-button");
+  cartProceedButton.addEventListener("click", () => {
+    localStorage.setItem(
+      "checkout-money",
+      JSON.stringify({
+        finalBase,
+        finalTax,
+        finalTotal,
+        finalDiscount,
+        shipping,
+      })
+    );
+  });
+
   // Add click event listeners to the close button of each product
   const closeButtons = document.querySelectorAll(".cart-item-close-button");
   closeButtons?.forEach((closeButton) => {
@@ -164,4 +180,18 @@ window.onload = () => {
       window.location.reload();
     });
   });
+
+  const searchForm = document.getElementById("search-form");
+  searchForm.onsubmit = (e) => {
+    e.preventDefault();
+    const searchKey = document.getElementById("search-key")?.value?.toLowerCase()?.trim();
+    const result = productList?.filter((product) => {
+      if (product?.name?.toLowerCase()?.includes(searchKey)) {
+        return true;
+      }
+      return false;
+    });
+    localStorage.setItem("search-list", JSON.stringify(result));
+    window.location.href = "/search.html";
+  };
 };

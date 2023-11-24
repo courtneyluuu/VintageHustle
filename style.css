@@ -375,3 +375,43 @@ ul {
     width: 100%;
   }
 }
+
+/* Shopping Cart & Favorite List*/
+
+.shopping-cart {
+  position: relative;
+}
+
+.shopping-cart>div {
+  background-color: rgb(244, 204, 204);
+  color: #000000;
+  padding: 1px 5px 0;
+  border-radius: 50%;
+  border: 1px solid #000000;
+  position: absolute;
+  top: -6px;
+  right: -28px;
+  font-size: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.favorite {
+  position: relative;
+}
+
+.favorite>div {
+  background-color: rgb(244, 204, 204);
+  color: #000000;
+  padding: 1px 5px 0;
+  border-radius: 50%;
+  border: 1px solid #000000;
+  position: absolute;
+  top: -6px;
+  right: -28px;
+  font-size: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

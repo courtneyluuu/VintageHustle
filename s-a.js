@@ -2,15 +2,23 @@ import productList from "./data.js";
 
 window.onload = () => {
   const cart = JSON.parse(localStorage.getItem("cart"));
+  const favorite = JSON.parse(localStorage.getItem("favorites"));
 
   const saProductList = document.getElementById("s-a-product-list");
   const cartQuantity = document.getElementById("cart-quantity");
+  const favoriteQuantity = document.getElementById("favorite-quantity");
 
   let quantity = 0;
   cart?.forEach((product) => {
     quantity += product.quantity;
   });
   cartQuantity.innerHTML = quantity;
+
+  let favQuantity = 0;
+  favorite?.forEach((product) => {
+    favQuantity += product.quantity;
+  });
+  favoriteQuantity.innerHTML = favQuantity;
 
   const productListHTML = productList
     .filter((item) => item.category.includes("s-a"))
@@ -26,6 +34,13 @@ window.onload = () => {
           : `<p><span class="original-price">$${product.original_price}</span></p>`
         }
           <p>Size: ${product.size}</p>
+          <div class="cart-button-fav">
+            <div id="add-to-cart-button" class="add-cart">
+            <div id="add-to-favorite-button" class="add-favorite">
+              <p>View Product</p>
+            </div>
+            </div>
+          </div>
         </div>
       </a>`
     )
@@ -42,4 +57,18 @@ window.onload = () => {
       localStorage.setItem("order-active-item", JSON.stringify(product));
     });
   });
+
+  const searchForm = document.getElementById("search-form");
+  searchForm.onsubmit = (e) => {
+    e.preventDefault();
+    const searchKey = document.getElementById("search-key")?.value?.toLowerCase()?.trim();
+    const result = productList?.filter((product) => {
+      if (product?.name?.toLowerCase()?.includes(searchKey)) {
+        return true;
+      }
+      return false;
+    });
+    localStorage.setItem("search-list", JSON.stringify(result));
+    window.location.href = "/search.html";
+  };
 };

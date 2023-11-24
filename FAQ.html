@@ -10,7 +10,9 @@
   <link href="style.css" rel="stylesheet" type="text/css" />
   <link rel="stylesheet"
     href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-  <script>
+  <script type="module">
+    import productList from "./data.js";
+
     window.onload = () => {
       const cart = JSON.parse(localStorage.getItem("cart"));
       const cartQuantity = document.getElementById("cart-quantity");
@@ -19,6 +21,20 @@
         quantity += product.quantity;
       });
       cartQuantity.innerHTML = quantity;
+
+      const searchForm = document.getElementById("search-form");
+      searchForm.onsubmit = (e) => {
+        e.preventDefault();
+        const searchKey = document.getElementById("search-key")?.value?.toLowerCase()?.trim();
+        const result = productList?.filter((product) => {
+          if (product?.name?.toLowerCase()?.includes(searchKey)) {
+            return true;
+          }
+          return false;
+        });
+        localStorage.setItem("search-list", JSON.stringify(result));
+        window.location.href = "/search.html";
+      };
     };
   </script>
 </head>
@@ -38,32 +54,13 @@
       </a>
     </div>
     <div class="row">
-      <style>
-        .shopping-cart {
-          position: relative;
-        }
-
-        .shopping-cart>div {
-          background-color: rgb(244, 204, 204);
-          color: #000000;
-          padding: 1px 5px 0;
-          border-radius: 50%;
-          border: 1px solid #000000;
-          position: absolute;
-          top: -6px;
-          right: -28px;
-          font-size: 12px;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-        }
-      </style>
       <div class="column shopping-cart" style="background-color: transparent">
         <a href="cart.html"><img src="icons/shopping cart.png" width="30" height="30" />Shopping Cart</a>
         <div id="cart-quantity">0</div>
       </div>
-      <div class="column" style="background-color:transparent;">
-        <a href="favorite.html"><img src="icons/favorite.png" width="30" height="30">Favorites</a>
+      <div class="column favorite" style="background-color: transparent">
+        <a href="favorite.html"><img src="icons/favorite.png" width="30" height="30" />Favorites</a>
+        <div id="favorite-quantity">0</div>
       </div>
       <div class="column" style="background-color:transparent;">
         <a href="login.html"><img src="icons/login.png" width="30" height="30">Login</a>
@@ -76,15 +73,15 @@
       <nav>
         <ul>
           <span class="material-symbols-outlined" onclick="openNav()">density_medium</span>
-          <li><a href="#">Trending</a></li>
+          <li><a href="trending.html">Trending</a></li>
           <li><a href="shop.html">Shop</a></li>
           <li><a href="index.html">Home</a></li>
           <li><a href="donate.html">Donate</a></li>
           <li><a href="#" style="color:red" ;>Deals</a></li>
           <li>
             <div class="search">
-              <form action=''>
-                <input type="text" placeholder="Search" name="search">
+              <form id="search-form">
+                <input id="search-key" type="text" placeholder="Search" name="search" />
                 <button type="submit">Submit</button>
               </form>
             </div>
@@ -98,6 +95,7 @@
       <a href="all-products.html">View All</a>
       <a href="clothes.html">Clothes</a>
       <a href="s-a.html">Shoes & Accessories</a>
+      <p></p>
       <p style="text-indent: 20px;" class="sidehead">Shop by Category</p>
       <a href="women.html">Womens</a>
       <a href="men.html">Mens</a>
@@ -122,7 +120,9 @@
   <!-- FAQ -->
 
   <style>
-    .info input[type=text], select, textarea {
+    .info input[type=text],
+    select,
+    textarea {
       width: 90%;
       height: 30px;
       padding: 12px;
@@ -194,7 +194,7 @@
     .modal {
       align-items: center;
       display: flex;
-      justify-content: center; 
+      justify-content: center;
       position: absolute;
       top: 0;
       bottom: 0;
@@ -205,6 +205,7 @@
       visibility: hidden;
       opacity: 0;
     }
+
     .content {
       position: absolute;
       background: white;
@@ -214,11 +215,13 @@
       border-radius: 4px;
       font-size: 14px;
       box-shadow: rgba(0, 0, 0, 0.15) 3.95px 3.95px 5.6px;
-    } 
+    }
+
     .modal:target {
       visibility: visible;
       opacity: 1;
     }
+
     .box-close {
       position: absolute;
       top: 0;
@@ -227,6 +230,7 @@
       text-decoration: none;
       font-size: 30px;
     }
+
     .box-close:hover {
       color: lightgrey;
       text-decoration: none;
@@ -297,9 +301,9 @@
         <li>Overnight shipping for $15.</li>
         <li>Free shipping on all orders over $45.</li>
       </ul>
-        <a href="#" class="box-close">
-            ×
-        </a>
+      <a href="#" class="box-close">
+        ×
+      </a>
     </div>
   </div>
   <div id="popup-box2" class="modal">
@@ -307,21 +311,23 @@
       <h2>When will my order be shipped?</h2>
       <h5>Excited about your new purchase?</h5>
       <p> </p>
-      <p>For standard shipping, we strive to have these dispatched within 48 hours of your order being placed and paid for.</p>
+      <p>For standard shipping, we strive to have these dispatched within 48 hours of your order being placed and paid
+        for.</p>
       <p>We will send you shipping details once a tracking number has been assigned to the order.</p>
-        <a href="#" class="box-close">
-            ×
-        </a>
+      <a href="#" class="box-close">
+        ×
+      </a>
     </div>
   </div>
   <div id="popup-box3" class="modal">
     <div class="content">
       <h2>How do I change my shipping address?</h2>
       <h5>Want to change the shipping address of an order?</h5>
-      <p>Virtually all major parcel carriers allow you to reroute a package to another address for delivery – provided you make the request online and the parcel hasn't been delivered yet.</p>
-        <a href="#" class="box-close">
-            ×
-        </a>
+      <p>Virtually all major parcel carriers allow you to reroute a package to another address for delivery – provided
+        you make the request online and the parcel hasn't been delivered yet.</p>
+      <a href="#" class="box-close">
+        ×
+      </a>
     </div>
   </div>
   <div id="popup-box4" class="modal">
@@ -329,19 +335,20 @@
       <h2>Where can I find a donation center?</h2>
       <h5>Thank you for your generous donation!</h5>
       <p>Easily locate our donation centers using this map <a href="donate.html">here</a>.</p>
-        <a href="#" class="box-close">
-            ×
-        </a>
+      <a href="#" class="box-close">
+        ×
+      </a>
     </div>
   </div>
   <div id="popup-box5" class="modal">
     <div class="content">
       <h2>How do I donate online?</h2>
       <h5>Looking for virtual donation options?</h5>
-      <p>Unfortunately, Vintage Hustle has no virtual donation options. Donations are to be made at one of our donation facilites found in our <a href="donate.html">map</a>.</p>
-        <a href="#" class="box-close">
-            ×
-        </a>
+      <p>Unfortunately, Vintage Hustle has no virtual donation options. Donations are to be made at one of our donation
+        facilites found in our <a href="donate.html">map</a>.</p>
+      <a href="#" class="box-close">
+        ×
+      </a>
     </div>
   </div>
   <div id="popup-box6" class="modal">
@@ -349,9 +356,9 @@
       <h2>Can I cancel or edit my order?</h2>
       <h5>Looking to make adjustments to your order?</h5>
       <p>...</p>
-        <a href="#" class="box-close">
-            ×
-        </a>
+      <a href="#" class="box-close">
+        ×
+      </a>
     </div>
   </div>
   <div id="popup-box7" class="modal">
@@ -359,9 +366,9 @@
       <h2>What happens if my package is lost or stolen?</h2>
       <h5>Missing a package?</h5>
       <p>If your package gets lost or stolen, please contact us immediately and we will work to find a solution.</p>
-        <a href="#" class="box-close">
-            ×
-        </a>
+      <a href="#" class="box-close">
+        ×
+      </a>
     </div>
   </div>
   <div id="popup-box8" class="modal">
@@ -369,9 +376,9 @@
       <h2>How do I find my size?</h2>
       <h5>Don't know what size you are?</h5>
       <p>Please use our sizing guide or check the product description.</p>
-        <a href="#" class="box-close">
-            ×
-        </a>
+      <a href="#" class="box-close">
+        ×
+      </a>
     </div>
   </div>
   <div id="popup-box9" class="modal">
@@ -379,9 +386,9 @@
       <h2>Common fit issues & solutions</h2>
       <h5>Does your order not fit?</h5>
       <p>...</p>
-        <a href="#" class="box-close">
-            ×
-        </a>
+      <a href="#" class="box-close">
+        ×
+      </a>
     </div>
   </div>
   <div id="popup-box10" class="modal">
@@ -389,39 +396,44 @@
       <h2>What is the return policy for international orders?</h2>
       <h5>Want to know our International Return Policy?</h5>
       <p>We accept returns within 30 days of placing your order.</p>
-        <a href="#" class="box-close">
-            ×
-        </a>
+      <a href="#" class="box-close">
+        ×
+      </a>
     </div>
   </div>
   <div id="popup-box11" class="modal">
     <div class="content">
       <h2>What are the return and exchange policies</h2>
       <h5>Want to know our Return & Exchange Policy?</h5>
-      <p>We accept returns within 30 days of placing your order. If you received a damaged or defective item, please check out our Customer Service page.</p>
-        <a href="#" class="box-close">
-            ×
-        </a>
+      <p>We accept returns within 30 days of placing your order. If you received a damaged or defective item, please
+        check out our Customer Service page.</p>
+      <a href="#" class="box-close">
+        ×
+      </a>
     </div>
   </div>
   <div id="popup-box12" class="modal">
     <div class="content">
       <h2>What fabrics and materials are used in the product?</h2>
       <h5>Curious about the materials of our products?</h5>
-      <p>Vintage Hustle only sells secondhand items in order to promote our eco-friendly fashion statement. The materials of these items should vary depending on the product, and may also be listed in the product's description.</p>
-        <a href="#" class="box-close">
-            ×
-        </a>
+      <p>Vintage Hustle only sells secondhand items in order to promote our eco-friendly fashion statement. The
+        materials of these items should vary depending on the product, and may also be listed in the product's
+        description.</p>
+      <a href="#" class="box-close">
+        ×
+      </a>
     </div>
   </div>
   <div id="popup-box13" class="modal">
     <div class="content">
       <h2>How does the gift card/promo code work?</h2>
       <h5>Want to use a gift card/promo code?</h5>
-      <p>Promotional codes offer limited time money-off on certain product ranges or items. You'll need to remember to enter the code into the relevant field at checkout. For Gift Cards, these are set amounts taken off the final amount for the whole order regardless of the range of products included.</p>
-        <a href="#" class="box-close">
-            ×
-        </a>
+      <p>Promotional codes offer limited time money-off on certain product ranges or items. You'll need to remember to
+        enter the code into the relevant field at checkout. For Gift Cards, these are set amounts taken off the final
+        amount for the whole order regardless of the range of products included.</p>
+      <a href="#" class="box-close">
+        ×
+      </a>
     </div>
   </div>
 
@@ -451,18 +463,18 @@
         <div class="footer-col">
           <h4>online shop</h4>
           <ul>
-            <li><a href="#">womens</a></li>
-            <li><a href="#">men</a></li>
-            <li><a href="#">kids</a></li>
-            <li><a href="#">unisex</a></li>
+            <li><a href="women.html">womens</a></li>
+            <li><a href="men.html">men</a></li>
+            <li><a href="kids.html">kids</a></li>
+            <li><a href="unisex.html">unisex</a></li>
           </ul>
         </div>
         <div class="footer-col">
           <h4>follow us</h4>
           <div class="social-links">
-            <a href="#"><img src="icons/facebook.png" width="20px" height="20px"><i class="fab fa-facebook-f"></i></a>
-            <a href="#"><img src="icons/twt.png" width="20px" height="20px"><i class="fab fa-twitter"></i></a>
-            <a href="#"><img src="icons/instagram.png" width="20px" height="20px"><i class="fab fa-instagram"></i></a>
+            <a href="#"><img src="icons/facebook.png" width="20px" height="20px" /><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><img src="icons/twt.png" width="20px" height="20px" /><i class="fab fa-twitter"></i></a>
+            <a href="#"><img src="icons/instagram.png" width="20px" height="20px" /><i class="fab fa-instagram"></i></a>
           </div>
         </div>
       </div>
@@ -470,3 +482,4 @@
   </footer>
 
 </body>
+</html>
