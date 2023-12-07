@@ -17,6 +17,8 @@ window.onload = () => {
   const placeOrder1 = document.getElementById("place-order-1");
   const placeOrder2 = document.getElementById("place-order-2");
 
+  
+
   fullName.innerHTML = `${checkoutInfo?.firstName} ${checkoutInfo?.lastName}`;
   address1.innerHTML = checkoutInfo?.streetAddress;
   address2.innerHTML = `${checkoutInfo?.city}, ${checkoutInfo?.state} ${checkoutInfo?.zipCode}`;

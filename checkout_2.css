@@ -1,6 +1,7 @@
 body {
   background-color: #c2c5bcff;
   color: #ffffff;
+  font-family: "Avenir";
 }
 
 .header {
@@ -41,13 +42,38 @@ body {
   width: 70%;
   color: #000000;
   background-color: #ffffff;
-  padding: 48px 24px;
+  padding: 32px 24px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  margin-bottom: 20px;
 }
 
 .form-2 {
   width: 30%;
   color: #000000;
   background-color: #ffffff;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+.back-button {
+  /*place under form-1*/
+  position: relative;
+  left: 20%;
+  float: center;
+  margin-top: 5px;
+  margin-left: 50px;
+}
+
+.back-button button {
+  border: 1px black solid;
+  font-size: 18px;
+  background-color: white;
+  padding: 6px 12px;
+  margin-top: 6px;
+  width: 50%;
+}
+
+.back-button button:hover {
+  opacity: 0.5;
 }
 
 .checkout-information {

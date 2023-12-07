@@ -189,6 +189,10 @@ span {
   width: 250px;
 }
 
+.cart-proceed-button:hover {
+  opacity: 0.5;
+}
+
 .cart-continue-button {
   font-size: 20px;
   cursor: pointer;
@@ -196,6 +200,10 @@ span {
   background-color: transparent;
   border: 2px solid #000000;
   width: 250px;
+}
+
+.cart-continue-button:hover {
+  opacity: 0.5;
 }
 
 .cart-right {
@@ -279,4 +287,49 @@ span {
   justify-content: space-between;
   gap: 12px;
   font-size: 20px;
+}
+
+.add-to-favorite {
+  border: 2px black;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.add-to-favorite:hover {
+  opacity: 0.8;
+  color: gold;
+}
+
+.shopButton {
+  border: black solid 1px;
+  background-color: #f4cdcc;
+  font-size: 14px;
+  padding: 6px 12px;
+}
+
+.shopButton:hover {
+  opacity: 0.8;
+}
+
+/* notification */
+#snackbar2 {
+  visibility: hidden;
+  min-width: 250px;
+  margin-left: -125px;
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  border-radius: 2px;
+  padding: 16px;
+  position: fixed;
+  z-index: 1;
+  left: 50%;
+  bottom: 30px;
+  font-size: 17px;
+}
+
+#snackbar2.show2 {
+  visibility: visible;
+  -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+  animation: fadein 0.5s, fadeout 0.5s 2.5s;
 }

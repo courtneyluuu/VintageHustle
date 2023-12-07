@@ -1,7 +1,10 @@
+import productList from './data.js';
+
 window.onload = () => {
-  const cartList = JSON.parse(localStorage.getItem("cart"));
+  let cartList = JSON.parse(localStorage.getItem("cart"));
   const cartDiscount = localStorage.getItem("discount");
   const cartLocalStorage = JSON.parse(localStorage.getItem("cart"));
+  const favorite = JSON.parse(localStorage.getItem("favorites"));
 
   const cartQuantity = document.getElementById("cart-quantity");
   const cart = document.getElementById("cart-list");
@@ -13,11 +16,26 @@ window.onload = () => {
   const total = document.getElementById("total");
   const checkoutContainer = document.getElementById("checkout-container");
   const shippingCost = document.getElementById("shipping-cost");
+  const favoriteQuantity = document.getElementById("favorite-quantity");
+
+
+  const notificationForFavorite = () => {
+    const y = document.getElementById("snackbar2");
+    y.className = "show2";
+    setTimeout(() => {
+      y.className = y.className.replace("show2", "");
+    }, 5000);
+  };
 
   let shipping = 5;
 
   if (!cartList?.length) {
-    checkoutContainer.innerHTML = `<p style="font-size: 20px">Your cart is empty.</p>`;
+    checkoutContainer.innerHTML =
+      `<p style="font-size: 20px">Your cart is empty.</p>
+      <a href = "shop.html">
+        <button class="shopButton">Go to Shop</button>
+      </a>`;
+
     shippingCost.innerHTML = `$0.00`;
     shipping = 0;
   }
@@ -27,6 +45,12 @@ window.onload = () => {
     quantity += product.quantity;
   });
   cartQuantity.innerHTML = quantity;
+
+  let favQuantity = 0;
+  favorite?.forEach((product) => {
+    favQuantity += product.quantity;
+  });
+  favoriteQuantity.innerHTML = favQuantity;
 
   let baseTotal = 0;
   cartList?.forEach((product) => {
@@ -44,7 +68,7 @@ window.onload = () => {
   tax.innerHTML = `$${finalTax}`;
 
   let finalTotal = 0;
-  const finalDiscount = 0;
+  let finalDiscount = 0;
   if (cartDiscount) {
     inputCode.value = cartDiscount; // bind sale10 to input
 
@@ -70,9 +94,10 @@ window.onload = () => {
     }
   });
 
-  cart.innerHTML = cartList
-    .map((product) => {
-      return `
+  let displayCart = () => {
+    if (cart.length !== 0) {
+      return (cart.innerHTML = cartList.map((product) => {
+        return `
         <div class="cart-items-container">
           <div class="cart-item-left">
             <!-- <input type="checkbox" /> -->
@@ -83,21 +108,24 @@ window.onload = () => {
                 <span>${product.size === "M" ? "SIZE MEDIUM" : product.size === "S" ? "SIZE SMALL" : "SIZE LARGE"}</span>
               </div>
               <div class="cart-item-info-bottom">
-                <p>Quantity: ${product.quantity}</p>
+                <!-- <p>Quantity: ${product.quantity}</p> -->
+                <i onclick="decrement(${product.id})" class="decrement">-</i>
+                <div id=${product.id} class="quantity">${product.quantity}</div>
+                <i onclick="increment(${product.id})" class="increment">+</i><br>
+                <button class="add-to-favorite" data-id=${product.id}>Save for later</button>
               </div>
             </div>
           </div>
           <div class="cart-item-right">
             <p>Total</p>
             <div>
-              ${
-                product.is_deal
-                  ? `<div class="price">
+              ${product.is_deal
+            ? `<div class="price">
                       <p>$${product.original_price}</p>
                       <p>$${product.sale_price}</p>
                     </div>`
-                  : `<p>$${product.original_price}</p>`
-              }
+            : `<p>$${product.original_price}</p>`
+          }
             </div>
           </div>
           <div class="cart-item-close-button" data-product-id="${product.id}">
@@ -152,9 +180,104 @@ window.onload = () => {
           </div>
         </div>
       `;
-    })
-    .join("");
+      }).join(""));
+    }
+  };
 
+  displayCart();
+  window.increment = (id) => {
+    let selectedItem = id;
+    let search = cartList.find((item) => item.id === selectedItem);
+    console.log("Search Result: ", search);
+
+    if (search === undefined) {
+      console.log("Item not found in basket, adding it");
+      cartList.push({
+        id: selectedItem.id,
+        quantity: 1,
+      });
+    } else {
+      console.log("item found in basket, incrementing quantity");
+      search.quantity += 1;
+    }
+    displayCart();
+    update();
+    let quantity = cartList.reduce((total, product) => total + product.quantity, 0);
+    cartQuantity.innerHTML = quantity;
+    localStorage.setItem("cart", JSON.stringify(cartList));
+  };
+
+  window.decrement = (id) => {
+    let selectedItem = id;
+    let search = cartList.find((x) => x.id === selectedItem);
+
+    if (search === undefined) return;
+    else if (search.quantity === 0) return;
+    else {
+      search.quantity -= 1;
+    }
+    update();
+    let quantity = cartList.reduce((total, product) => total + product.quantity, 0);
+    cartQuantity.innerHTML = quantity;
+    cartList = cartList.filter((x) => x.item !== 0);
+    displayCart();
+    localStorage.setItem("cart", JSON.stringify(cartList));
+  };
+
+  let update = (id) => {
+    let search = cartList.find((x) => x.id === id);
+    if (search) {
+      document.getElementById(id).innerHTML = search.quantity;
+      // calculation();
+
+      const quantity = basket.reduce((total, item) => total + item.quantity, 0);
+      cartQuantity.innerHTML = quantity;
+    }
+  };
+
+  // Save for later button
+  document.addEventListener("click", (event) => {
+    if (event.target.classList.contains("add-to-favorite")) {
+      const id = parseInt(event.target.getAttribute("data-id"));
+      const currentFavorite = JSON.parse(localStorage.getItem("favorites"));
+      const isExistingInFavorite = currentFavorite.find((item) => item.id === id);
+
+      if (isExistingInFavorite) {
+
+        localStorage.setItem(
+          "favorites",
+          JSON.stringify(
+            currentFavorite.map((item) => {
+              if (item.id === id) {
+                return { ...item, quantity: item.quantity + 1 };
+              }
+              return item;
+            })
+          )
+        );
+      } else {
+        const product = productList.find((item) => item.id === id);
+        if (product) {
+          localStorage.setItem(
+            "favorites",
+            JSON.stringify([...currentFavorite, { ...product, quantity: 1 }])
+          );
+        }
+        else {
+          console.log("product {$id} not found");
+        }
+      }
+
+      notificationForFavorite();
+      localStorage.setItem("cart", JSON.stringify(cartList.filter((item) => item.id !== +id)));
+
+      window.location.reload();
+      const newFavorite = JSON.parse(localStorage.getItem("favorites"));
+      const newFavQuantity = newFavorite.reduce((total, product) => total + product.quantity, 0);
+      favoriteQuantity.innerHTML = newFavQuantity;
+    }
+  });
+  // cart proceed button
   const cartProceedButton = document.getElementById("cart-proceed-button");
   cartProceedButton.addEventListener("click", () => {
     localStorage.setItem(

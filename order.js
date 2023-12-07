@@ -18,6 +18,7 @@ window.onload = () => {
 
   const cart = JSON.parse(localStorage.getItem("cart"));
   const product = JSON.parse(localStorage.getItem("order-active-item"));
+  console.log("Product: ",product);
   const favorite = JSON.parse(localStorage.getItem("favorites"));
 
   const cartQuantity = document.getElementById("cart-quantity");
@@ -30,6 +31,7 @@ window.onload = () => {
   const favoriteQuantity = document.getElementById("favorite-quantity");
   const addToFavoriteButton = document.getElementById("add-to-favorite-button");
 
+
   let quantity = 0;
   cart?.forEach((product) => {
     quantity += product.quantity;
@@ -37,8 +39,8 @@ window.onload = () => {
   cartQuantity.innerHTML = quantity;
 
   let favQuantity = 0;
-  favorite?.forEach((favoriteItem) => {
-    favQuantity += favoriteItem.quantity;
+  favorite?.forEach((product) => {
+    favQuantity += product.quantity;
   });
   favoriteQuantity.innerHTML = favQuantity;
 
@@ -72,7 +74,7 @@ window.onload = () => {
     } else {
       localStorage.setItem("cart", JSON.stringify(currentCart ? [...currentCart, { ...product, quantity: 1 }] : [{ ...product, quantity: 1 }]));
     }
-    
+
     notification();
 
     const newCart = JSON.parse(localStorage.getItem("cart"));
@@ -87,7 +89,7 @@ window.onload = () => {
 
     const currentFav = JSON.parse(localStorage.getItem("favorites"));
     const isExistingInFavorite = currentFav?.find((item) => item.id === product.id);
-    
+
     if (isExistingInFavorite) {
       localStorage.setItem(
         "favorites",

@@ -16,10 +16,10 @@
     window.onload = () => {
       const cart = JSON.parse(localStorage.getItem("cart"));
       const favorite = JSON.parse(localStorage.getItem("favorites"));
-      
+
       const cartQuantity = document.getElementById("cart-quantity");
       const favoriteQuantity = document.getElementById("favorite-quantity");
-      
+
       let quantity = 0;
       cart?.forEach((product) => {
         quantity += product.quantity;
@@ -138,41 +138,13 @@
       box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
     }
 
-    .centers {
-      text-align: center;
-      margin-top: 50px;
+    .map_container a {
+      text-decoration: none;
+      color: black;
     }
-
-    .info input[type="text"],
-    select,
-    textarea {
-      width: 80%;
-      height: 30px;
-      padding: 12px;
-      border: 0px solid black;
-      background-color: transparent;
-      box-sizing: border-box;
-      margin-top: 6px;
-      font-family: "Avenir";
-      font-size: 14px;
-      margin-bottom: 16px;
-      resize: vertical;
-      box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
-    }
-
-    .info button {
-      background-color: #f5f8f1ff;
-      font-family: "Avenir";
-      padding: 5.5px 20px;
-      border: 1px solid black;
-      border-radius: 2px;
-      border: 0px;
-      cursor: pointer;
-      box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
-    }
-
-    .info button:hover {
-      background-color: #eeeeeeff;
+    .map_container a:hover {
+      opacity: 0.8;
+      color: gold;
     }
   </style>
 
@@ -183,16 +155,7 @@
   <div class="map_container">
     <h2>Find a Donation Center</h2>
     <p>Vintage Hustle Donation Center Locator</p>
-    <form action="#" class="info">
-      <input type="text" placeholder="Search by zip, city, or street" name="search" />
-      <button type="submit">Find</button>
-    </form>
-    <img src="images/map.png" width="150" height="150" class="map_picture" />
-  </div>
-
-  <div class="centers">
-    <iframe src="https://www.google.com/maps/d/u/0/embed?mid=1t1DHnHpZHjw5OIIAZbKueN89BXtZ9Q8&ehbc=2E312F&noprof=1"
-      width="800" height="480"></iframe>
+    <a href="https://www.google.com/maps/d/viewer?mid=1t1DHnHpZHjw5OIIAZbKueN89BXtZ9Q8&usp=sharing" target=”_blank”><img src="images/map.png" width="150" height="150"/><br>Click Here</a>
   </div>
 
   <!--Footer-->

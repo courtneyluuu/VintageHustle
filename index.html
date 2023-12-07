@@ -15,12 +15,22 @@
 
     window.onload = () => {
       const cart = JSON.parse(localStorage.getItem("cart"));
+      const favorite = JSON.parse(localStorage.getItem("favorites"));
+
       const cartQuantity = document.getElementById("cart-quantity");
+      const favoriteQuantity = document.getElementById("favorite-quantity");
+
       let quantity = 0;
       cart?.forEach((product) => {
         quantity += product.quantity;
       });
       cartQuantity.innerHTML = quantity;
+
+      let favQuantity = 0;
+      favorite?.forEach((product) => {
+        favQuantity += product.quantity;
+      });
+      favoriteQuantity.innerHTML = favQuantity;
 
       const searchForm = document.getElementById("search-form");
       searchForm.onsubmit = (e) => {
@@ -264,7 +274,7 @@
         <button class="button1"><a href="kids.html">Kids</a></button>
       </li>
       <li>
-        <button class="button1"><a href="s-a.html">Accessories</a></button>
+        <button class="button1"><a href="s-a.html">Shoes & Accessories</a></button>
       </li>
       <li>
         <button class="button1"><a href="all-products.html">Others</a></button>

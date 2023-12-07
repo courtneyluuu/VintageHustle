@@ -1,6 +1,7 @@
 body {
   background-color: #c2c5bcff;
   color: #ffffff;
+  font-family: "Avenir";
 }
 
 .header {
@@ -43,6 +44,7 @@ body {
   padding: 32px 16px;
   color: #000000;
   background-color: #ffffff;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
 
 .form-title {
@@ -146,4 +148,8 @@ body span {
   border: none;
   background-color: #ffffff;
   padding: 4px;
+}
+
+.button-container button:hover {
+  opacity: 0.8;
 }
